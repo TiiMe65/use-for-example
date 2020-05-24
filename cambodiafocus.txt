@@ -1,0 +1,2222 @@
+focus_tree = {
+id = 'cambodiafocus'
+country = {
+factor=0
+modifier = {
+add = 10
+tag = CMB
+}
+}
+default = no
+continuous_focus_position = { x = 1850 y = 950 }
+#Custom focuses start here
+#Focus for Kingdom Of Cambodia 
+	focus = { 
+	id = kingdomofcambodia
+	icon = demand_territory
+	bypass = {} 
+ ai_will_do = { factor = 10} 
+ x =1
+ y =-1
+ mutually_exclusive = { } 
+ prerequisite = {  }  
+ available = {  } 
+ cost = 10  
+  available_if_capitulated = yes  
+ completion_reward = { 
+  add_political_power =  75  
+		} 
+	}
+	
+#Focus for Hun sen Government
+	focus = { 
+	id = hunsengovernment
+	icon = democracy
+	bypass = {} 
+ ai_will_do = { factor = 10} 
+ x =-7
+ y =0
+ mutually_exclusive = { focus = norodomranariddhgovernment } 
+ mutually_exclusive = { focus = othergovernment } 
+ prerequisite = { focus = kingdomofcambodia }  
+ available = {  } 
+ cost = 10  
+  available_if_capitulated = yes  
+ completion_reward = { 
+  add_political_power =  100 
+    add_stability = 0.05
+  increase_conservative_influence_by_1 = yes 
+ 			if = { 
+ 				limit = { NOT = { has_government = conservative } } 
+ 			} 
+ 			add_popularity = { 
+ 				ideology = conservative 
+ 				popularity = 0.15 
+ 			} 
+ 			set_politics = { 
+ 				ruling_party = conservative 
+ 				elections_allowed = yes 
+ 			} 
+ 			add_ideas = idea_focus_family_values   
+		} 
+	}
+#Focus for Norodom Ranariddh Government or the old way
+	focus = { 
+	id = norodomranariddhgovernment
+	icon = monarchy5
+	bypass = {} 
+ ai_will_do = { factor = 10} 
+ x =8
+ y =0
+ mutually_exclusive = { focus = hunsengovernment }
+ mutually_exclusive = { focus = othergovernment }
+ prerequisite = { focus = kingdomofcambodia }  
+ available = {  } 
+ cost = 10  
+  available_if_capitulated = yes  
+ completion_reward = { 
+  add_political_power =  100 
+    add_stability = 0.05
+  increase_monarchist_influence_by_1 = yes
+			if = {
+				limit = { NOT = { has_government = monarchist } }
+			}
+			add_popularity = {
+				ideology = monarchist
+				popularity = 0.2
+			}
+			set_politics = {
+				ruling_party = monarchist
+				elections_allowed = no
+			}
+			increase_monarchist_influence_by_2 = yes
+			add_ideas = idea_focus_generic_national_heritage
+		} 
+	}
+
+#Focus for Other Government
+	focus = { 
+	id = othergovernment
+	icon = neutrality
+	bypass = {} 
+ ai_will_do = { factor = 10} 
+ x =1
+ y =0
+ mutually_exclusive = { focus = norodomranariddhgovernment }
+ mutually_exclusive = { focus = hunsengovernment }
+ prerequisite = { focus = kingdomofcambodia }  
+ available = {  } 
+ cost = 15 
+  available_if_capitulated = yes  
+ completion_reward = { 
+  add_war_support = 0.05
+   add_stability = 0.05
+		} 
+	}
+	
+#Focus for Plus GDP
+	focus = { 
+	id = plusgdp
+	icon = united_states_dollar
+	bypass = {} 
+ ai_will_do = { factor = 10} 
+ x =-8
+ y =1
+ mutually_exclusive = { } 
+ prerequisite = { focus = hunsengovernment }  
+ available = {  } 
+ cost = 10  
+  available_if_capitulated = yes  
+ completion_reward = { 
+  add_political_power =  25 
+   add_stability = 0.05
+  add_ideas = Planned_Economic
+  increase_birth_rate = yes    
+  
+		} 
+	}
+
+#Focus for Develop Industry SMEs
+	focus = { 
+	id = developindustrysmes
+	icon = industry_civilian
+	bypass = {} 
+ ai_will_do = { factor = 10} 
+ x =-6
+ y =1
+ mutually_exclusive = { } 
+ prerequisite = { focus = hunsengovernment }  
+ available = {  } 
+ cost = 10  
+  available_if_capitulated = yes  
+ completion_reward = { 
+  286 = { 
+		add_extra_state_shared_building_slots = 1
+		add_extra_state_shared_building_slots = 1
+		add_extra_state_shared_building_slots = 1
+		add_building_construction = { 
+                type = infrastructure 
+                level = 1
+                instant_build = yes 
+				} 
+			}
+		}		
+	}
+
+#Focus for Samdech Son Sann (ghouls)
+	focus = { 
+	id = samdechsonsann
+	icon = fascism
+	bypass = {} 
+ ai_will_do = { factor = 10} 
+ x =3
+ y =1
+ mutually_exclusive = { focus = khieusamphan  }
+ prerequisite = { focus = othergovernment }  
+ available = {  } 
+ cost = 10  
+  available_if_capitulated = yes  
+ completion_reward = { 
+  add_political_power =  100 
+			if = {
+				limit = { NOT = { has_government = revisionist } }
+			}
+			add_popularity = {
+				ideology = revisionist
+				popularity = 0.90
+			}
+			set_politics = {
+				ruling_party = revisionist
+				elections_allowed = no
+			}
+			add_ideas = idea_focus_national_security
+			add_ideas = idea_focus_generic_realpolitik 
+	CMB = {
+	country_event = { id = cambodia.40 }
+		} 
+		}
+	  }
+
+#Focus civilian support
+	focus = { 
+	id = civiliansupport
+	icon = national_unity_red
+	bypass = {} 
+ ai_will_do = { factor = 10} 
+ x =4
+ y =2
+ mutually_exclusive = { }
+ prerequisite = { focus = samdechsonsann }  
+ available = {  } 
+ cost = 02
+  available_if_capitulated = yes
+ completion_reward = { 
+  add_political_power =  50 
+  add_stability = -0.05
+	  }
+	}
+
+#Focus military support
+	focus = { 
+	id = militarysupport
+	icon = national_unity
+	bypass = {} 
+ ai_will_do = { factor = 10} 
+ x =2
+ y =2
+ mutually_exclusive = { }
+ prerequisite = { focus = samdechsonsann }  
+ available = {  } 
+ cost = 02
+  available_if_capitulated = yes  
+ completion_reward = { 
+  add_political_power =  50 
+  add_stability = -0.05
+	  }
+	}
+
+#Focus for Dissolve Party Because Son sann Died (reconstruction or revolution)
+	focus = { 
+	id = dissolvepartybecausesonsanndied
+	icon = falun_gong
+	bypass = {} 
+ ai_will_do = { factor = 10} 
+ x =3
+ y =3
+ mutually_exclusive = {  }
+ prerequisite = { focus = civiliansupport }  
+ prerequisite = { focus = militarysupport } 
+ available = {  } 
+ cost = 10  
+  available_if_capitulated = yes  
+ completion_reward = { 
+  add_political_power =  -75
+  add_stability = -0.15
+  
+		} 
+	}
+
+#focus for Ghouls' Uncle
+	focus = { 
+	id = khieusamphan 
+	icon = demand_territory
+	bypass = {} 
+ ai_will_do = { factor = 10} 
+ x =-1
+ y =1
+ mutually_exclusive = { focus = samdechsonsann }
+ prerequisite = { focus = othergovernment }  
+ available = {  } 
+ cost = 10  
+  available_if_capitulated = yes  
+ completion_reward = { 
+  add_political_power =  100 
+  increase_progressive_influence_by_5 = yes
+			if = {
+				limit = { NOT = { has_government = progressive } }
+			}
+			add_popularity = {
+				ideology = progressive
+				popularity = 0.99
+			}
+		} 
+	}
+	
+#Focus for GMS
+	focus = { 
+	id = gms
+	icon = local_management
+	bypass = {} 
+ ai_will_do = { factor = 10} 
+ x =-8
+ y =2
+ mutually_exclusive = { } 
+ prerequisite = { focus = plusgdp }  
+ available = {  } 
+ cost = 10  
+  available_if_capitulated = yes  
+ completion_reward = { 
+  add_political_power =  25 
+
+	286 = { 
+        add_extra_state_shared_building_slots = 2
+        add_building_construction = { 
+ 					type = industrial_complex 
+ 					level = 2
+ 					instant_build = yes 
+ 				} 
+			} 
+		} 
+	}
+
+#Focus for Industrial Focus
+	focus = { 
+	id = industrialfocus
+	icon = industry_civilian
+	bypass = {} 
+ ai_will_do = { factor = 10} 
+ x =-6
+ y =2
+ mutually_exclusive = { } 
+ prerequisite = { focus = developindustrysmes }  
+ available = {  } 
+ cost = 10  
+  available_if_capitulated = yes  
+ completion_reward = {
+	286 = { 
+        add_extra_state_shared_building_slots = 3
+        add_building_construction = { 
+ 					type = industrial_complex 
+ 					level = 3
+ 					instant_build = yes 
+ 				} 
+      } 
+	}
+  }
+ 
+ #Focus for Will Of The People (party politics)
+	focus = { 
+	id = willofthepeople
+	icon = destroy_society
+	bypass = {} 
+ ai_will_do = { factor = 10} 
+ x =-4
+ y =2
+ mutually_exclusive = { } 
+ prerequisite = { focus = khieusamphan }  
+ available = {  } 
+ cost = 10  
+  available_if_capitulated = yes  
+ completion_reward = { 
+  add_political_power =  105 
+   add_war_support = -0.15
+    add_stability = -0.05
+  increase_libertarian_influence_by_2 = yes
+			add_ideas = idea_focus_generic_will_of_the_people  
+		} 
+	}
+ 
+ 
+ #Focus on cambodian army
+	focus = { 
+	id = militaryfocus
+	icon = industry_military
+	bypass = {} 
+ ai_will_do = { factor = 10} 
+ x =-5
+ y =5
+ mutually_exclusive = { } 
+ prerequisite = {
+	focus = willofthepeople  
+	focus = industrialfocus }
+ available = {  } 
+ cost = 10  
+  available_if_capitulated = yes  
+ completion_reward = {
+	286 = { 
+        add_extra_state_shared_building_slots = 2
+        add_building_construction = { 
+ 					type = arms_factory 
+ 					level = 2
+ 					instant_build = yes 
+ 				} 
+      }
+		add_ideas = idea_focus_generic_motorized_focus 	  
+	}
+  }
+  
+  
+ #Focus for Monarch Economic or royal centralization
+	focus = { 
+	id = monarcheconomic 
+	icon = monarchy3
+	bypass = {} 
+ ai_will_do = { factor = 10} 
+ x =7
+ y =1
+ mutually_exclusive = { }
+ prerequisite = { focus = norodomranariddhgovernment }  
+ available = {  } 
+ cost = 10  
+  available_if_capitulated = yes  
+ completion_reward = { 
+ 
+		} 
+	}
+
+ #Focus for Our way forward or khmer kindgom
+	focus = { 
+	id = ourwayforward
+	icon = monarchy2
+	bypass = {} 
+ ai_will_do = { factor = 10} 
+ x =8
+ y =2
+ mutually_exclusive = { }
+ prerequisite = { focus = monarcheconomic }  
+ prerequisite = { focus = createharmonyincambodiapeople }  
+ available = {  } 
+ cost = 10  
+  available_if_capitulated = yes  
+ completion_reward = { 
+ 			add_ideas = USA_economic_deregulation
+ 			add_ideas = USA_industrial_development_program_idea1
+		} 
+	}
+	
+
+#Focus for Create harmony In Cambodia People
+	focus = { 
+	id = createharmonyincambodiapeople
+	icon = monarchy
+	bypass = {} 
+ ai_will_do = { factor = 10} 
+ x =9
+ y =1
+ mutually_exclusive = { }
+ prerequisite = { focus = norodomranariddhgovernment }  
+ available = {  } 
+ cost = 10  
+  available_if_capitulated = yes  
+ completion_reward = { 
+	add_war_support = 0.05
+    add_stability = 0.02
+
+	add_ideas = idea_focus_generic_encouraged_private_research
+	add_ideas = idea_focus_generic_census_reform
+ 
+		} 
+	}
+
+
+#Focus for Catholic State Religion
+	focus = { 
+	id = catholicstatereligion
+	icon = attack_democracy
+	bypass = {} 
+ ai_will_do = { factor = 10} 
+ x =1
+ y =4
+ mutually_exclusive = {  }
+ prerequisite = { focus = dissolvepartybecausesonsanndied }  
+ available = {  } 
+ cost = 10  
+  available_if_capitulated = yes  
+ completion_reward = { 
+			add_stability = 0.05
+			add_ideas = USA_christian_influence
+		} 
+	}
+
+#Focus for Faith Initiative Programs
+	focus = { 
+	id = faithinitiativeprograms
+	icon = propaganda
+	bypass = {} 
+ ai_will_do = { factor = 10} 
+ x =1
+ y =5
+ mutually_exclusive = {  }
+ prerequisite = { focus = catholicstatereligion }  
+ available = {  } 
+ cost = 10  
+  available_if_capitulated = yes  
+ completion_reward = { 
+  add_stability = 0.05
+ add_ideas = FRA_racial_society
+  
+		} 
+	}
+
+#focus for Destroy the Status Quo
+	focus = {
+	id = destroythestatusquo
+	icon = destroy_establishment
+	bypass = {} 
+ ai_will_do = { factor = 10} 
+ x =3
+ y =4
+ mutually_exclusive = {  }
+ prerequisite = { focus = dissolvepartybecausesonsanndied }  
+ available = {  } 
+ cost = 10  
+  available_if_capitulated = yes  
+ completion_reward = { 
+  add_political_power =  50 
+  increase_fascist_influence_by_1 = yes 
+ 			add_ideas = ENG_diplomatic_sovereignity_idea
+		} 
+	}
+
+#focus for Rewrite Cambodian Constitution
+	focus = {
+	id = rewritecambodianconstitution
+	icon = dangerous_laws
+	bypass = {} 
+ ai_will_do = { factor = 10} 
+ x =3
+ y =5
+ mutually_exclusive = {  }
+ prerequisite = { focus = destroythestatusquo }  
+ available = {  } 
+ cost = 15  
+  available_if_capitulated = yes  
+ completion_reward = { 
+  add_political_power =  175 
+  increase_fascist_influence_by_1 = yes 
+  add_ideas = USA_diplomatic_corps_idea
+		} 
+	}
+	
+
+#Focus for Monarchy Industrial
+	focus = { 
+	id = monarchyindustrial
+	icon = industry_civilian
+	bypass = {} 
+ ai_will_do = { factor = 10} 
+ x =8
+ y =5
+ mutually_exclusive = { } 
+ prerequisite = { focus = monarcheconomic }
+ prerequisite =	{ focus = createharmonyincambodiapeople }
+ available = {  } 
+ cost = 10  
+  available_if_capitulated = yes  
+ completion_reward = {
+	286 = { 
+        add_extra_state_shared_building_slots = 2
+        add_building_construction = { 
+ 					type = arms_factory 
+ 					level = 2
+ 					instant_build = yes 
+ 				} 
+      } 
+	286 = { 
+        add_extra_state_shared_building_slots = 2
+        add_building_construction = { 
+ 					type = industrial_complex 
+ 					level = 2
+ 					instant_build = yes 
+ 				} 
+      } 
+	}
+  }
+ 
+ #Focus for Hun Sen Take Over or Proclaim Khmer Empire
+	focus = { 
+	id = hunsentakeover
+	icon = fascism2
+	bypass = {} 
+ ai_will_do = { factor = 10} 
+ x =-1
+ y =5
+ mutually_exclusive = {  }
+ prerequisite = { focus = rewritecambodianconstitution }
+ prerequisite = { focus = dissolvepartybecausesonsanndied }  
+
+ available = {  } 
+ cost = 10  
+  available_if_capitulated = yes  
+ completion_reward = { 
+  add_political_power =  125 
+    add_stability = 0.20
+  			set_politics = {
+				ruling_party = fascist
+				elections_allowed = no
+			}
+ 			add_popularity = {
+				ideology = fascist
+				popularity = 1.00
+			}
+  hidden_effect = { kill_country_leader = yes  } 
+        create_country_leader = {
+            name = "Lon Ghouls" 
+            desc = ""
+            picture = "Patrick_Lon.dds"
+            expire = "2999.1.1" 
+            ideology = national_socialist 
+            traits = {
+                blitzkrieg_theorist
+            }
+        }
+	CMB = {
+	country_event = { id = cambodia.45 }
+		} 
+	}
+}
+
+ #Focus for Lon Cult of Personality
+	focus = { 
+	id = lonpersonalitycult
+	icon = fascism2
+	bypass = {} 
+ ai_will_do = { factor = 10} 
+ x =0
+ y =6
+ mutually_exclusive = { focus = patricklonthought }
+ prerequisite = { focus = hunsentakeover } 
+ available = {  } 
+ cost = 10  
+  available_if_capitulated = yes  
+ completion_reward = { 
+ add_political_power =  50
+ add_ideas = USA_anglo_saxon_economic_principles
+ add_ideas = USA_massive_military_industrial_complex
+		} 
+	}
+
+ #Focus for Patrick Lon Thought
+	focus = { 
+	id = patricklonthought
+	icon = fascism2
+	bypass = {} 
+ ai_will_do = { factor = 10} 
+ x =-2
+ y =6
+ mutually_exclusive = { focus = lonpersonalitycult  }
+ prerequisite = { focus = hunsentakeover } 
+ available = {  } 
+ cost = 10  
+  available_if_capitulated = yes  
+ completion_reward = { 
+  add_political_power =  50
+  add_ideas = idea_focus_generic_will_of_the_people
+			add_ideas = idea_SOV_oligarchic_republic
+		}
+	}
+
+ #Focus for Angkor Trials
+	focus = { 
+	id = angkortrials
+	icon = fascism3
+	bypass = {} 
+ ai_will_do = { factor = 10} 
+ x =-1
+ y =7
+ mutually_exclusive = { }
+ prerequisite = {
+ focus = patricklonthought
+ focus = lonpersonalitycult 
+ }
+ available = {  } 
+ cost = 05
+  available_if_capitulated = yes  
+ completion_reward = { 
+  add_political_power =  50
+  	CMB = {
+	country_event = { id = cambodia.41 }
+		}
+		}
+	}
+
+#focus for the great question
+	focus = { 
+	id = greatquestion
+	icon = renounce_treaty
+	bypass = {} 
+ ai_will_do = { factor = 10} 
+ x =2
+ y =7
+ mutually_exclusive = {  }
+  prerequisite = { 
+	focus = hunsentakeover
+	focus = monarchyindustrial 
+	focus = militaryfocus  }  
+ available = {  } 
+ cost = 05
+  available_if_capitulated = yes  
+ completion_reward = {   add_political_power =  50   } 
+	}
+	
+#Focus for ASEAN Relationships
+	focus = { 
+	id = aseanrelationships
+	icon = align_to_asean
+	bypass = {} 
+ ai_will_do = { factor = 10} 
+ x =5
+ y =8
+ mutually_exclusive = { focus = nationalismofpastkhmerempire }
+ prerequisite = { focus = greatquestion  }  
+ available = {  } 
+ cost = 10  
+  available_if_capitulated = yes  
+ completion_reward = { 
+  add_political_power =  100
+  add_war_support = -0.05
+  add_stability = 0.05
+  set_rule = { can_create_factions = yes }
+  LAO = { add_opinion_modifier = { target = CMB modifier = recent_actions_positive } } 
+          MYA = { add_opinion_modifier = { target = CMB modifier = recent_actions_positive } } 
+          ETI = { add_opinion_modifier = { target = CMB modifier = recent_actions_positive } } 
+          INS = { add_opinion_modifier = { target = CMB modifier = recent_actions_positive } } 
+          MAY = { add_opinion_modifier = { target = CMB modifier = recent_actions_positive } } 
+          SIG = { add_opinion_modifier = { target = CMB modifier = recent_actions_positive } } 
+          VIN = { add_opinion_modifier = { target = CMB modifier = recent_actions_positive } } 
+          BRU = { add_opinion_modifier = { target = CMB modifier = recent_actions_positive } } 
+          SIA = { add_opinion_modifier = { target = CMB modifier = recent_actions_positive } }			
+		} 
+	}
+
+#Focus for Nationalism Of Past Khmer Empire
+	focus = { 
+	id = nationalismofpastkhmerempire
+	icon = war3
+	bypass = {} 
+ ai_will_do = { factor = 6} 
+ x =-3
+ y =8
+ mutually_exclusive = { focus = aseanrelationships }
+ prerequisite = { focus = greatquestion }
+ available = { 
+			OR = {
+					has_government = fascist
+					has_government = nationalist
+				}
+			   } 
+ cost = 10  
+  available_if_capitulated = yes  
+ completion_reward = { 
+  add_political_power =  100
+  add_war_support = 0.15
+  add_stability = 0.05
+  add_manpower= 500000
+  army_experience = 25
+  navy_experience = 10
+  air_experience = 10  
+  increase_fascist_influence_by_1 = yes
+  add_ideas = FRA_land_fort_idea
+
+	set_rule = { can_create_factions = yes }  
+		} 
+	}
+	
+#Focus for Strike Autthaya
+	focus = { 
+	id = strikeayutthaya
+	icon = war2
+	bypass = {} 
+ ai_will_do = { factor = 10} 
+ x =-5
+ y =9
+ mutually_exclusive = {  }
+ prerequisite = { focus = nationalismofpastkhmerempire  }  
+ available = {  } 
+ cost = 10  
+  available_if_capitulated = yes  
+ completion_reward = { 
+	add_state_core = 289 
+ 	add_state_core = 891 
+ 	SIA= { add_opinion_modifier = { target = CMB modifier = recent_actions_negative } } 
+		} 
+	}
+	
+#Focus for Strike Lan Xang
+	focus = { 
+	id = strikelanxang
+	icon = war2
+	bypass = {} 
+ ai_will_do = { factor = 10} 
+ x =-3
+ y =9
+ mutually_exclusive = {  }
+ prerequisite = { focus = nationalismofpastkhmerempire  }  
+ available = {  } 
+ cost = 5  
+  available_if_capitulated = yes  
+ completion_reward = { 
+  add_state_core = 670 
+ 	LAO= { add_opinion_modifier = { target = CMB modifier = recent_actions_negative } } 
+	declare_war_on = {
+			target = LAO
+			type = take_state
+		 }
+		} 
+	}
+	
+#Focus for Strike Champa and Dai Viet
+	focus = { 
+	id = strikechampaanddaiviet
+	icon = war2
+	bypass = {} 
+ ai_will_do = { factor = 10} 
+ x =-1
+ y =9
+ mutually_exclusive = {  }
+ prerequisite = { focus = nationalismofpastkhmerempire  }  
+ available = {  } 
+ cost = 5  
+  available_if_capitulated = yes  
+ completion_reward = { 
+	add_state_core = 783
+	add_state_core = 784
+	VIN= { add_opinion_modifier = { target = CMB modifier = recent_actions_negative } }  
+		} 
+	}
+	
+#Focus for ASEAN Support Our Economic or neighbors
+	focus = { 
+	id = aseansupportoureconomic
+	icon = align_to_asean
+	bypass = {} 
+ ai_will_do = { factor = 10} 
+ x =5
+ y =9
+ mutually_exclusive = {  }
+ prerequisite = { focus = aseanrelationships  }  
+ available = {  } 
+ cost = 10  
+  available_if_capitulated = yes  
+ completion_reward = {
+     add_political_power =  250 
+    add_stability = 0.02
+  286 = { 
+        add_extra_state_shared_building_slots = 5
+        add_building_construction = { 
+ 					type = industrial_complex 
+ 					level = 5
+ 					instant_build = yes 
+ 				} 
+			}
+		  LAO = { add_opinion_modifier = { target = CMB modifier = recent_actions_positive } } 
+          MYA = { add_opinion_modifier = { target = CMB modifier = recent_actions_positive } } 
+          ETI = { add_opinion_modifier = { target = CMB modifier = recent_actions_positive } } 
+          INS = { add_opinion_modifier = { target = CMB modifier = recent_actions_positive } } 
+          MAY = { add_opinion_modifier = { target = CMB modifier = recent_actions_positive } } 
+          SIG = { add_opinion_modifier = { target = CMB modifier = recent_actions_positive } } 
+          VIN = { add_opinion_modifier = { target = CMB modifier = recent_actions_positive } } 
+          BRU = { add_opinion_modifier = { target = CMB modifier = recent_actions_positive } } 
+          SIA = { add_opinion_modifier = { target = CMB modifier = recent_actions_positive } }			
+		} 
+	}
+
+#focus for Peace in our time
+	focus = { 
+	id = peaceinourtime
+	icon = align_to_asean
+	bypass = {} 
+ ai_will_do = { factor = 10} 
+ x =5
+ y =10
+ mutually_exclusive = {  }
+ prerequisite = { focus = aseansupportoureconomic  }  
+ available = {  } 
+ cost = 15  
+  available_if_capitulated = yes  
+ completion_reward = {
+    add_political_power =  500 
+    add_stability = 0.05
+    add_war_support = -0.20
+  286 = { 
+        add_extra_state_shared_building_slots = 10
+        add_building_construction = { 
+ 					type = industrial_complex 
+ 					level = 10
+ 					instant_build = yes 
+ 				} 
+			}
+		  LAO = { add_opinion_modifier = { target = CMB modifier = recent_actions_positive } } 
+          MYA = { add_opinion_modifier = { target = CMB modifier = recent_actions_positive } } 
+          ETI = { add_opinion_modifier = { target = CMB modifier = recent_actions_positive } } 
+          INS = { add_opinion_modifier = { target = CMB modifier = recent_actions_positive } } 
+          MAY = { add_opinion_modifier = { target = CMB modifier = recent_actions_positive } } 
+          SIG = { add_opinion_modifier = { target = CMB modifier = recent_actions_positive } } 
+          VIN = { add_opinion_modifier = { target = CMB modifier = recent_actions_positive } } 
+          BRU = { add_opinion_modifier = { target = CMB modifier = recent_actions_positive } } 
+          SIA = { add_opinion_modifier = { target = CMB modifier = recent_actions_positive } }			
+		} 
+	}
+
+
+#Focus for Claim and Take Khao Phra Wihan (prepare for war)
+	focus = { 
+	id = claimandtakekhaophrawihan
+	icon = war
+	bypass = {} 
+ ai_will_do = { factor = 10} 
+ x =-3
+ y =10
+ mutually_exclusive = {  }
+ prerequisite = { focus = strikeayutthaya  }  
+ prerequisite = { focus = strikelanxang  }
+ prerequisite = { focus = strikechampaanddaiviet  } 
+ available = {  } 
+ cost = 10  
+  available_if_capitulated = yes  
+ completion_reward = { 
+   add_political_power =  125  
+   add_stability = 0.05
+   add_war_support = 0.15
+add_ideas = idea_focus_generic_army_of_purity
+  }	
+}
+#Focus for Rise Of Cambodia
+	focus = { 
+	id = riseofcambodia
+	icon = attack_democracy2
+	bypass = {} 
+ ai_will_do = { factor = 10} 
+ x =-3
+ y =11
+ mutually_exclusive = {  }
+ prerequisite = { focus = claimandtakekhaophrawihan  }  
+ available = {  } 
+ cost = 15  
+  available_if_capitulated = yes  
+ completion_reward = { 
+   add_manpower= 1000000
+ 	286 = {  
+ 					add_resource = { type = rubber amount = 10 } 
+ 				}  
+ 
+	286 = {  
+ 					add_resource = { type = tungsten amount = 5 } 
+ 				}
+				
+	286 = {  
+ 					add_resource = { type = steel amount = 10 } 
+					
+ 				}
+  				add_extra_state_shared_building_slots = 1 
+ 				add_building_construction = { 
+ 					type = arms_factory  
+ 					level = 1 
+ 					instant_build = yes 
+ 				}
+  				add_extra_state_shared_building_slots = 1 
+ 				add_building_construction = { 
+ 					type = arms_factory  
+ 					level = 1 
+ 					instant_build = yes 
+ 				}
+  				add_extra_state_shared_building_slots = 1 
+ 				add_building_construction = { 
+ 					type = arms_factory  
+ 					level = 1 
+ 					instant_build = yes 
+ 				}
+   				add_extra_state_shared_building_slots = 1 
+ 				add_building_construction = { 
+ 					type = arms_factory  
+ 					level = 1 
+ 					instant_build = yes 
+ 				}
+  				add_extra_state_shared_building_slots = 1 
+ 				add_building_construction = { 
+ 					type = arms_factory  
+ 					level = 1 
+ 					instant_build = yes 
+ 				}
+  				add_extra_state_shared_building_slots = 1 
+ 				add_building_construction = { 
+ 					type = arms_factory  
+ 					level = 1 
+ 					instant_build = yes 
+ 				}
+
+		} 
+	}
+
+#Focus for Economic Questions
+	focus = { 
+	id = economicquestions
+	icon = industry_civilian
+	bypass = {} 
+ ai_will_do = { factor = 10} 
+ x =12
+ y =6
+ mutually_exclusive = {  }
+ prerequisite = { 
+	focus = hunsentakeover
+	focus = monarchyindustrial 
+	focus = militaryfocus  }   
+ available = {  } 
+ cost = 10 
+  available_if_capitulated = yes  
+ completion_reward = { 
+  add_political_power =  50 
+		  
+		} 
+	}
+
+#Focus for Develop Border or Old Khmer Industry
+	focus = { 
+	id = developborderold
+	icon = construction2
+	bypass = {} 
+ ai_will_do = { factor = 10} 
+ x =14
+ y =7
+ mutually_exclusive = { focus = developborder }
+ prerequisite = { focus = economicquestions  }   
+ available = {  } 
+ cost = 10  
+  available_if_capitulated = yes  
+ completion_reward = { 
+  add_political_power =  100 
+  286 = { 
+        add_building_construction = { 
+ 					type = industrial_complex 
+ 					level = 2
+ 					instant_build = yes 
+ 				}
+        add_building_construction = { 
+ 					type = industrial_complex 
+ 					level = 2
+ 					instant_build = yes 
+ 				}
+        add_building_construction = { 
+ 					type = industrial_complex 
+ 					level = 2
+ 					instant_build = yes 
+ 				}
+			}
+		  
+		} 
+	}
+#Focus for build more huts
+	focus = { 
+	id = buildmorehuts
+	icon = construction2
+	bypass = {} 
+ ai_will_do = { factor = 10} 
+ x =14
+ y =8
+ mutually_exclusive = {  }
+ prerequisite = { focus = developborderold  }   
+ available = {  } 
+ cost = 10  
+  available_if_capitulated = yes  
+ completion_reward = { 
+  add_political_power =  200 
+  286 = { 
+         add_extra_state_shared_building_slots = 1
+		  add_extra_state_shared_building_slots = 1
+        add_building_construction = { 
+ 					type = infrastructure 
+ 					level = 5
+ 					instant_build = yes 
+ 				} 
+			}
+		  
+		} 
+	}
+
+#Focus for Fund the Sweatshops
+	focus = { 
+	id = fundthesweatshops
+	icon = construction2
+	bypass = {} 
+ ai_will_do = { factor = 10} 
+ x =14
+ y =9
+ mutually_exclusive = {  }
+ prerequisite = { focus = buildmorehuts  }   
+ available = {  } 
+ cost = 10  
+  available_if_capitulated = yes  
+ completion_reward = { 
+  add_political_power =  300 
+  286 = { 
+        add_extra_state_shared_building_slots = 1
+        add_building_construction = { 
+ 					type = industrial_complex 
+ 					level = 4
+ 					instant_build = yes 
+ 				}
+       		  }
+			}
+		  } 
+#Focus for Pronounce the Economy Fixed
+	focus = { 
+	id = pronouncefixedeconomy
+	icon = propaganda
+	bypass = {} 
+ ai_will_do = { factor = 10} 
+ x =14
+ y =10
+ mutually_exclusive = {  }
+ prerequisite = { focus = fundthesweatshops  }   
+ available = {  } 
+ cost = 10  
+  available_if_capitulated = yes  
+ completion_reward = { 
+  add_political_power =  500 
+			}
+		  }
+
+#Focus for Develop Border or New Khmer Industry
+	focus = { 
+	id = developborder
+	icon = production2
+	bypass = {} 
+ ai_will_do = { factor = 10} 
+ x =10
+ y =7
+ mutually_exclusive = { focus = developborderold }
+ prerequisite = { focus = economicquestions }   
+available = { 
+			OR = {
+					has_government = fascist
+					has_government = monarchist
+					has_government = communist
+				}
+			   }  
+ cost = 05 
+  available_if_capitulated = yes  
+ completion_reward = { 
+  add_political_power =  100 
+ 	add_ideas = USA_centralized_industrial_control_idea
+  286 = { 
+		  add_extra_state_shared_building_slots = 1
+ 				add_building_construction = { 
+ 					type = arms_factory  
+ 					level = 1 
+ 					instant_build = yes 
+ 				}
+  				add_extra_state_shared_building_slots = 1 
+ 				add_building_construction = { 
+ 					type = arms_factory  
+ 					level = 1 
+ 					instant_build = yes 
+ 				}
+  				add_extra_state_shared_building_slots = 1 
+ 				add_building_construction = { 
+ 					type = arms_factory  
+ 					level = 1 
+ 					instant_build = yes 
+ 				}
+   				add_extra_state_shared_building_slots = 1 
+ 				add_building_construction = { 
+ 					type = industrial_complex  
+ 					level = 1 
+ 					instant_build = yes 
+ 				}
+  				add_extra_state_shared_building_slots = 1 
+ 				add_building_construction = { 
+ 					type = industrial_complex  
+ 					level = 1 
+ 					instant_build = yes 
+ 				}
+  				add_extra_state_shared_building_slots = 1 
+ 				add_building_construction = { 
+ 					type = industrial_complex  
+ 					level = 1 
+ 					instant_build = yes 
+ 				}
+		} 
+	}
+}
+
+#Focus for Economic Investment or massive corporate subsidies
+	focus = { 
+	id = economicinvestment
+	icon = money
+	bypass = {} 
+ ai_will_do = { factor = 10} 
+ x =8
+ y =8
+ mutually_exclusive = {  }
+ prerequisite = { focus = developborder  }   
+ available = {  } 
+ cost = 10  
+  available_if_capitulated = yes  
+ completion_reward = { 
+    add_ideas = Foreign_Investment
+	add_ideas = { 
+ 		idea_focus_generic_public_service_investment 
+ 		} 
+	random_owned_state = {  
+ 		add_extra_state_shared_building_slots = 1 
+        add_building_construction = { 
+ 					type = arms_factory 
+ 					level = 1
+ 					instant_build = yes 
+ 				} 
+    		add_extra_state_shared_building_slots = 1  
+ 	        add_building_construction = { 
+ 					type = arms_factory 
+ 					level = 1
+ 					instant_build = yes 
+ 				} 
+    		add_extra_state_shared_building_slots = 1 
+ 	        add_building_construction = { 
+ 					type = arms_factory 
+ 					level = 1
+ 					instant_build = yes 
+ 				} 			
+		}
+	} 
+}		
+
+#Focus for ITDM Industrial Development or khmer industrial devolpment
+	focus = { 
+	id = ITDM
+	icon = construction
+	bypass = {} 
+ ai_will_do = { factor = 10} 
+ x =10
+ y =9
+ mutually_exclusive = {  }
+ prerequisite = { focus = economicinvestment }
+ prerequisite = { focus = nationalisteconomy }
+ prerequisite = { focus = economicmodel }   
+ available = {  } 
+ cost = 15  
+  available_if_capitulated = yes  
+ completion_reward = { 
+	add_ideas = idea_focus_industrial_development_program
+	286 = { 
+        add_extra_state_shared_building_slots = 1
+		add_extra_state_shared_building_slots = 1
+		add_extra_state_shared_building_slots = 1
+			}
+	286 = {  
+        add_building_construction = { 
+ 					type = industrial_complex 
+ 					level = 2
+ 					instant_build = yes 
+ 				} 
+      }
+		  
+		} 
+	}
+	
+#Focus for CMB Resource Focus
+	focus = { 
+	id = CMBresourcefocus
+	icon = intelligence_exchange
+	bypass = {} 
+ ai_will_do = { factor = 10} 
+ x =8
+ y =9
+ mutually_exclusive = {  }
+ prerequisite = { focus = economicinvestment }
+ prerequisite = { focus = nationalisteconomy }
+ prerequisite = { focus = economicmodel }    
+ available = {  } 
+ cost = 10  
+ available_if_capitulated = yes  
+ completion_reward = {  
+  286 = {  
+ 					add_resource = { type = rubber amount = 43 } 
+ 				}  
+ 
+  286 = {  
+ 					add_resource = { type = tungsten amount = 10 } 
+ 				}
+				
+  286 = {  
+ 					add_resource = { type = steel amount = 14 } 
+					
+ 				} 
+		  
+		} 
+	}
+
+#Focus for Military Factory 
+	focus = { 
+	id = militaryfactoryCMB
+	icon = industry_military
+	bypass = {} 
+ ai_will_do = { factor = 10} 
+ x =12
+ y =9
+ mutually_exclusive = { } 
+ prerequisite = { focus = economicinvestment }
+ prerequisite = { focus = nationalisteconomy }
+ prerequisite = { focus = economicmodel }  
+ available = {  } 
+ cost = 10  
+  available_if_capitulated = yes  
+ completion_reward = {
+	random_owned_state = { 
+        add_extra_state_shared_building_slots = 1
+        add_building_construction = { 
+ 					type = arms_factory 
+ 					level = 1
+ 					instant_build = yes 
+ 				} 
+      } 
+	random_owned_state = { 
+        add_extra_state_shared_building_slots = 1
+        add_building_construction = { 
+ 					type = arms_factory 
+ 					level = 1
+ 					instant_build = yes 
+ 				} 
+      }
+	random_owned_state = { 
+        add_extra_state_shared_building_slots = 1
+        add_building_construction = { 
+ 					type = arms_factory 
+ 					level = 1
+ 					instant_build = yes 
+ 				} 
+      }  
+	}
+  }
+ 
+ #Focus for Extra CMB Research Slot
+	focus = { 
+	id = extracmbresearchslot
+	icon = research
+	bypass = {} 
+ ai_will_do = { factor = 10} 
+ x =10
+ y =10
+ mutually_exclusive = { } 
+ prerequisite = { focus = militaryfactoryCMB  }
+ prerequisite = { focus = CMBresourcefocus  }
+ prerequisite = { focus = ITDM  }
+ available = {  } 
+ cost = 10  
+  available_if_capitulated = yes  
+ completion_reward = {
+       add_research_slot = 2			 
+      } 
+	}
+
+ #Focus for Fascistic economy
+	focus = { 
+	id = fasisiticeconomy
+	icon = fascism
+	bypass = {} 
+ ai_will_do = { factor = 10} 
+ x =12
+ y =11
+ mutually_exclusive = { 
+ focus = botheconomy
+ focus = libertarianeconomy  } 
+ prerequisite = { focus = extracmbresearchslot  }
+ available = { } 
+ cost = 15  
+  available_if_capitulated = yes  
+ completion_reward = {
+   increase_fascist_influence_by_1 = yes
+ 		add_political_power = 250
+       add_stability = 0.05
+		286 = { 
+        add_extra_state_shared_building_slots = 10
+        add_building_construction = { 
+ 					type = arms_factory 
+ 					level = 10
+ 					instant_build = yes 
+ 				} 
+		}
+
+      } 
+	}
+
+ #Focus for libertarian economy
+	focus = { 
+	id = libertarianeconomy
+	icon = trade_deal
+	bypass = {} 
+ ai_will_do = { factor = 10} 
+ x =8
+ y =11
+ mutually_exclusive = { 
+ focus = botheconomy
+ focus = fasisiticeconomy } 
+ prerequisite = { focus = extracmbresearchslot  }
+ available = { } 
+ cost = 15  
+  available_if_capitulated = yes  
+ completion_reward = {
+   increase_progressive_influence_by_1 = yes
+ 		add_political_power = 250
+       add_stability = 0.05
+		286 = { 
+        add_extra_state_shared_building_slots = 10
+        add_building_construction = { 
+ 					type = industrial_complex
+ 					level = 10
+ 					instant_build = yes 
+ 				} 
+		}
+
+      } 
+	}
+
+ #Focus for both economy or the Lon plan
+	focus = { 
+	id = botheconomy
+	icon = dangerous_deal
+	bypass = {} 
+ ai_will_do = { factor = 10} 
+ x =10
+ y =12
+ mutually_exclusive = { 
+ focus = fasisiticeconomy
+ focus = libertarianeconomy
+  } 
+ prerequisite = { focus = extracmbresearchslot  }
+ available = { has_government = fascist } 
+ cost = 15  
+  available_if_capitulated = yes  
+ completion_reward = {
+ 	   add_political_power = 250
+       add_stability = 0.05
+		286 = { 
+        add_extra_state_shared_building_slots = 10
+        add_building_construction = { 
+ 					type = arms_factory
+ 					level = 5
+ 					instant_build = yes 
+ 				}
+         add_building_construction = { 
+ 					type = industrial_complex
+ 					level = 5
+ 					instant_build = yes 
+ 				} 
+		}
+
+      } 
+	}
+	
+#Focus for Harbor Mega Project
+	focus = { 
+	id = harbormegaproject
+	icon = naval_dockyards
+	bypass = {} 
+ ai_will_do = { factor = 10} 
+ x =13
+ y =0
+ mutually_exclusive = { } 
+ prerequisite = { focus = kingdomofcambodia }
+ available = {  } 
+ cost = 10  
+  available_if_capitulated = yes  
+ completion_reward = {
+      286 = { add_building_construction = { type = naval_base province = 7404 level = 3 instant_build = yes } }
+	  286 = { 
+        add_extra_state_shared_building_slots = 2
+        add_building_construction = { 
+ 					type = industrial_complex 
+ 					level = 2
+ 					instant_build = yes 
+ 				} 
+		}
+
+		286 = {  
+ 					add_resource = { type = rubber amount = 10 } 
+ 				}  
+ 
+		286 = {  
+ 					add_resource = { type = oil amount = 15 } 
+ 				}
+				
+ 	 } 
+  }
+  
+ #Focus for Khmer Rouge Era (tax incentives)
+	focus = { 
+	id = khmerrougeera
+	icon = intelligence_exchange
+	bypass = {} 
+ ai_will_do = { factor = 10} 
+ x =-2
+ y =2
+ mutually_exclusive = {  }
+ prerequisite = { focus = khieusamphan }  
+ available = {  } 
+ cost = 10  
+  available_if_capitulated = yes  
+ completion_reward = { 
+			add_ideas = idea_focus_generic_progressive_doctrine
+			increase_progressive_influence_by_3 = yes
+		286 = { 
+        add_extra_state_shared_building_slots = 1
+        add_building_construction = { 
+ 					type = industrial_complex 
+ 					level = 1
+ 					instant_build = yes 
+ 				} 
+		}
+		
+		286 = { 
+        add_extra_state_shared_building_slots = 1
+        add_building_construction = { 
+ 					type = industrial_complex 
+ 					level = 1
+ 					instant_build = yes 
+ 				} 
+			
+			
+			
+			}
+		} 
+	}
+
+	
+#Focus for Change Cities To Factory or polite policy
+	focus = { 
+	id = changecitiestofactory
+	icon = industry_military
+	bypass = {} 
+ ai_will_do = { factor = 10} 
+ x =-3
+ y =3
+ mutually_exclusive = { } 
+ prerequisite = { focus = khmerrougeera }
+ prerequisite =	{ focus = willofthepeople }
+ available = {  } 
+ cost = 10  
+  available_if_capitulated = yes  
+ completion_reward = {
+ add_manpower = -50000
+	286 = { 
+        add_extra_state_shared_building_slots = 1
+        add_building_construction = { 
+ 					type = arms_factory  
+ 					level = 1
+ 					instant_build = yes 
+ 				} 
+		}
+		
+	286 = { 
+        add_extra_state_shared_building_slots = 1
+        add_building_construction = { 
+ 					type = arms_factory 
+ 					level = 1
+ 					instant_build = yes 
+ 				} 
+		}
+	286 = { 
+        add_extra_state_shared_building_slots = 1
+        add_building_construction = { 
+ 					type = arms_factory 
+ 					level = 1
+ 					instant_build = yes 
+ 				} 
+		}
+	 
+		}
+   }
+
+#Focus for Appease Donors
+	focus = { 
+	id = appeasedonors
+	icon = money
+	bypass = {} 
+ ai_will_do = { factor = 10} 
+ x =-3
+ y =4
+ mutually_exclusive = { } 
+ prerequisite = { focus = changecitiestofactory }
+ available = {  } 
+ cost = 10  
+  available_if_capitulated = yes  
+ completion_reward = {
+ add_manpower = -50000
+	286 = { 
+        add_extra_state_shared_building_slots = 1
+        add_building_construction = { 
+ 					type = industrial_complex 
+ 					level = 1
+ 					instant_build = yes 
+ 				} 
+		}
+		
+	286 = { 
+        add_extra_state_shared_building_slots = 1
+        add_building_construction = { 
+ 					type = industrial_complex
+ 					level = 1
+ 					instant_build = yes 
+ 				} 
+		}
+	286 = { 
+        add_extra_state_shared_building_slots = 1
+        add_building_construction = { 
+ 					type = industrial_complex
+ 					level = 1
+ 					instant_build = yes 
+ 				} 
+		}
+	 
+		}
+   }
+   
+   
+#Focus for Apply Power Of Cities
+	focus = { 
+	id = applypowerofcities
+	icon = industry_civilian
+	bypass = {} 
+ ai_will_do = { factor = 10} 
+ x =13
+ y =1
+ mutually_exclusive = { } 
+ prerequisite = { focus = harbormegaproject }
+ available = {  } 
+ cost = 10  
+  available_if_capitulated = yes  
+ completion_reward = { 
+	286 = { 
+        add_extra_state_shared_building_slots = 1
+        add_building_construction = { 
+ 					type = industrial_complex 
+ 					level = 1
+ 					instant_build = yes 
+ 				} 
+       } 
+	286 = { 
+        add_extra_state_shared_building_slots = 1
+        add_building_construction = { 
+ 					type = industrial_complex 
+ 					level = 1
+ 					instant_build = yes 
+ 				} 
+       }
+	286 = {  
+ 					add_resource = { type = rubber amount = 10 } 
+ 				}  
+ 
+	286 = {  
+ 					add_resource = { type = tungsten amount = 5 } 
+ 				}
+				
+	286 = {  
+ 					add_resource = { type = steel amount = 10 } 
+					
+ 				}	
+		
+		}  
+	   
+     }
+   
+   
+ #Focus for Apply Power Of Cities II
+	focus = { 
+	id = applypowerofcitiesII
+	icon = industry_civilian
+	bypass = {} 
+ ai_will_do = { factor = 10} 
+ x =13
+ y =2
+ mutually_exclusive = { } 
+ prerequisite = { focus = applypowerofcities }
+ available = {  } 
+ cost = 10  
+  available_if_capitulated = yes  
+ completion_reward = {
+	286 = { 
+        add_extra_state_shared_building_slots = 1
+        add_building_construction = { 
+ 					type = arms_factory 
+ 					level = 1
+ 					instant_build = yes 
+ 				} 
+      }  
+	286 = { 
+        add_extra_state_shared_building_slots = 1
+        add_building_construction = { 
+ 					type = industrial_complex 
+ 					level = 1
+ 					instant_build = yes 
+ 				} 
+       }
+	   
+	  286 = {  
+ 					add_resource = { type = steel amount = 15 } 
+					
+ 				} 
+	  286 = {  
+ 					add_resource = { type = rubber amount = 7 } 
+					
+ 				} 
+      286 = {  
+ 					add_resource = { type = aluminium amount = 5 } 
+					
+ 				}
+     }
+   }
+   
+ #Focus for State Economic or General Prunes raise
+	focus = { 
+	id = stateeconomic
+	icon = military_mission
+	bypass = {} 
+ ai_will_do = { factor = 10} 
+ x =5
+ y =4
+ mutually_exclusive = { } 
+ prerequisite = { focus = dissolvepartybecausesonsanndied }
+ available = {  } 
+ cost = 10  
+  available_if_capitulated = yes  
+ completion_reward = {
+add_ideas = idea_focus_new_recruitment_strategies
+add_ideas = USA_army_college
+     }
+   }
+
+ #Focus for friends in high places
+	focus = { 
+	id = friendsinhighplaces
+	icon = improve_relations_red
+	bypass = {} 
+ ai_will_do = { factor = 10} 
+ x =7
+ y =4
+ mutually_exclusive = { } 
+ prerequisite = {
+ focus = dissolvepartybecausesonsanndied 
+ focus = monarcheconomic }
+ available = {  } 
+ cost = 10  
+  available_if_capitulated = yes  
+ completion_reward = {
+ add_political_power =  75 
+          CSA = { add_opinion_modifier = { target = CMB modifier = recent_actions_positive } } 
+          GER = { add_opinion_modifier = { target = CMB modifier = recent_actions_positive } } 
+          ISR = { add_opinion_modifier = { target = CMB modifier = recent_actions_positive } } 
+          BRA = { add_opinion_modifier = { target = CMB modifier = recent_actions_positive } } 
+          SWE = { add_opinion_modifier = { target = CMB modifier = recent_actions_positive } } 
+          SOM = { add_opinion_modifier = { target = CMB modifier = recent_actions_positive } } 
+     }
+   }
+
+ #Focus for Perfect the Knights of Angkor Program
+	focus = { 
+	id = knightsofangkorprogram
+	icon = skull2
+	bypass = {} 
+ ai_will_do = { factor = 10} 
+ x =5
+ y =5
+ mutually_exclusive = { } 
+ prerequisite = { focus = stateeconomic }
+ available = {  has_government = fascist } 
+ cost = 10  
+  available_if_capitulated = yes  
+ completion_reward = {
+  add_ideas = USA_glorify_the_military_idea
+  army_experience = 25
+  navy_experience = 10
+  air_experience = 10 
+  	CMB = {
+	country_event = { id = cambodia.44 }
+		} 
+     }
+   }
+   
+#Focus for Military Budget Annual 
+	focus = { 
+	id = cmbmilitarybudgetannual
+	icon = industry_military 
+	bypass = {} 
+ ai_will_do = { factor = 10} 
+ x =15
+ y =0
+ mutually_exclusive = { } 
+ prerequisite = { focus = kingdomofcambodia} 
+ available = { 
+			OR = {
+					has_government = monarchist
+					has_government = communist
+					has_government = conservative
+					date > 2000.01.01
+					has_war = yes
+				}
+			   }  
+ cost = 10  
+  available_if_capitulated = yes  
+ completion_reward = { 
+ random_owned_state = { 
+ 				limit = { 
+ 					free_building_slots = { 
+ 						building = arms_factory  
+ 						size > 0 
+ 						include_locked = yes 
+ 					} 
+ 				} 
+ 				add_extra_state_shared_building_slots = 1 
+ 				add_building_construction = { 
+ 					type = arms_factory  
+ 					level = 1 
+ 					instant_build = yes 
+ 				} 
+ 			} 
+ 			random_owned_state = { 
+ 				limit = { 
+ 					free_building_slots = { 
+ 						building = arms_factory  
+ 						size > 0 
+ 						include_locked = yes 
+ 					} 
+ 				} 
+ 				add_extra_state_shared_building_slots = 1 
+ 				add_building_construction = { 
+ 					type = arms_factory  
+ 					level = 1 
+ 					instant_build = yes 
+ 				} 
+ 			}
+	
+	
+	
+	}
+	}
+	
+#Focus for Military Budget Annual II 
+	focus = { 
+	id = cmbmilitarybudgetannualii
+	icon = industry_military 
+	bypass = {} 
+ ai_will_do = { factor = 10} 
+ x =15
+ y =1
+ mutually_exclusive = { } 
+ prerequisite = { focus = cmbmilitarybudgetannual} 
+ available = { 
+			OR = {
+					has_government = monarchist
+					has_government = communist
+					has_government = conservative
+					date > 2000.06.01
+					has_war = yes
+				}
+			   } 
+ cost = 10  
+  available_if_capitulated = yes  
+ completion_reward = { 
+ random_owned_state = { 
+ 				limit = { 
+ 					free_building_slots = { 
+ 						building = arms_factory  
+ 						size > 0 
+ 						include_locked = yes 
+ 					} 
+ 				} 
+ 				add_extra_state_shared_building_slots = 1 
+ 				add_building_construction = { 
+ 					type = arms_factory  
+ 					level = 1 
+ 					instant_build = yes 
+ 				} 
+ 			} 
+ 			random_owned_state = { 
+ 				limit = { 
+ 					free_building_slots = { 
+ 						building = arms_factory  
+ 						size > 0 
+ 						include_locked = yes 
+ 					} 
+ 				} 
+ 				add_extra_state_shared_building_slots = 1 
+ 				add_building_construction = { 
+ 					type = arms_factory  
+ 					level = 1 
+ 					instant_build = yes 
+ 				} 
+ 			}
+	
+	
+	
+	}
+	}
+
+
+#Focus for Military Budget Annual III 
+	focus = { 
+	id = cmbmilitarybudgetannualiii
+	icon = industry_military 
+	bypass = {} 
+ ai_will_do = { factor = 10} 
+ x =15
+ y =2
+ mutually_exclusive = { } 
+ prerequisite = { focus > cmbmilitarybudgetannualii} 
+ available = { 
+			OR = {
+					has_government = monarchist
+					has_government = communist
+					has_government = conservative
+					date > 2001.01.01
+					has_war = yes
+				}
+			   } 
+ cost = 10  
+  available_if_capitulated = yes  
+ completion_reward = { 
+ random_owned_state = { 
+ 				limit = { 
+ 					free_building_slots = { 
+ 						building = arms_factory  
+ 						size > 0 
+ 						include_locked = yes 
+ 					} 
+ 				} 
+ 				add_extra_state_shared_building_slots = 1 
+ 				add_building_construction = { 
+ 					type = arms_factory  
+ 					level = 1 
+ 					instant_build = yes 
+ 				} 
+ 			} 
+ 			random_owned_state = { 
+ 				limit = { 
+ 					free_building_slots = { 
+ 						building = arms_factory  
+ 						size > 0 
+ 						include_locked = yes 
+ 					} 
+ 				} 
+ 				add_extra_state_shared_building_slots = 1 
+ 				add_building_construction = { 
+ 					type = arms_factory  
+ 					level = 1 
+ 					instant_build = yes 
+ 				} 
+ 			}
+			random_owned_state = { 
+ 				limit = { 
+ 					free_building_slots = { 
+ 						building = arms_factory  
+ 						size > 0 
+ 						include_locked = yes 
+ 					} 
+ 				} 
+ 				add_extra_state_shared_building_slots = 1 
+ 				add_building_construction = { 
+ 					type = arms_factory  
+ 					level = 1 
+ 					instant_build = yes 
+ 				} 
+ 			} 
+	
+	
+	
+	}
+	}
+
+ #Focus for Khmer Army
+	focus = { 
+	id = khmerarmy
+	icon = tank
+	bypass = {} 
+ ai_will_do = { factor = 10} 
+ x =17
+ y =0
+ mutually_exclusive = { } 
+ prerequisite = { focus = kingdomofcambodia }
+ available = {  } 
+ cost = 10  
+  available_if_capitulated = yes  
+ completion_reward = {
+  add_war_support = 0.05
+  army_experience = 50
+	add_tech_bonus = { 
+ 				name = tank_bonus 
+ 				bonus = 0.25 
+ 				uses = 1 
+ 				category = armor 
+ 			}
+	add_tech_bonus = { 
+ 				name = artillery_bonus 
+ 				bonus = 0.25 
+ 				uses = 2 
+ 				category = artillery 
+ 			}		
+     }
+   }	
+   
+ #Focus for Khmer Airforce
+	focus = { 
+	id = khmerairforce
+	icon = fighter2
+	bypass = {} 
+ ai_will_do = { factor = 10} 
+ x =17
+ y =1
+ mutually_exclusive = { } 
+ prerequisite = { focus = khmerarmy }
+ available = {  } 
+ cost = 10  
+  available_if_capitulated = yes  
+ completion_reward = {
+ air_experience = 20
+	add_ideas = idea_focus_generic_fighter_focus 
+    add_ideas = idea_focus_generic_bomber_focus 		
+     }
+   }
+   
+#Focus for Khmer Naval
+	focus = { 
+	id = khmernaval
+	icon = cruisers
+	bypass = {} 
+ ai_will_do = { factor = 10} 
+ x =17
+ y =2
+ mutually_exclusive = { } 
+ prerequisite = { focus = khmerairforce }
+ available = {  } 
+ cost = 10  
+  available_if_capitulated = yes  
+ completion_reward = {
+ navy_experience = 15
+	add_tech_bonus = { 
+ 				name = carrier_bonus 
+ 				bonus = 0.4 
+ 				uses = 2
+ 				category = dd_tech  
+				}
+	add_tech_bonus = { 
+ 				name = carrier_bonus 
+ 				bonus = 0.4 
+ 				uses = 1
+ 				category = naval_equipment
+				}			
+			}
+		}
+#focus for foritify the mekong
+	focus = { 
+	id = beginfortifythemekong
+	icon = military_fort
+	bypass = {} 
+ ai_will_do = { factor = 10} 
+ x =19
+ y =0
+ mutually_exclusive = { } 
+ prerequisite = { focus = kingdomofcambodia }
+ available = {  } 
+ cost = 05 
+  available_if_capitulated = yes  
+ completion_reward = {
+        286 = {
+            add_building_construction = {
+                type = bunker
+                province = 12447
+                level = 5
+                instant_build = yes
+            }
+            add_building_construction = {
+                type = bunker
+                province = 12475
+                level = 5
+                instant_build = yes
+            }
+            add_building_construction = {
+                type = bunker
+                province = 4639
+                level = 5
+                instant_build = yes
+            }
+            add_building_construction = {
+                type = bunker
+                province = 7376
+                level = 5
+                instant_build = yes
+            }
+            add_building_construction = {
+                type = bunker
+                province = 10317
+                level = 5
+                instant_build = yes
+            }
+        }			
+			}
+		}  
+
+#focus for finish foritifing the mekong
+	focus = { 
+	id = finishfortifythemekong
+	icon = military_fort
+	bypass = {} 
+ ai_will_do = { factor = 10} 
+ x =19
+ y =1
+ mutually_exclusive = { } 
+ prerequisite = { focus = beginfortifythemekong }
+ available = {  } 
+ cost = 05 
+  available_if_capitulated = yes  
+ completion_reward = {
+        286 = {
+            add_building_construction = {
+                type = bunker
+                province = 12447
+                level = 5
+                instant_build = yes
+            }
+            add_building_construction = {
+                type = bunker
+                province = 12475
+                level = 5
+                instant_build = yes
+            }
+            add_building_construction = {
+                type = bunker
+                province = 4639
+                level = 5
+                instant_build = yes
+            }
+            add_building_construction = {
+                type = bunker
+                province = 7376
+                level = 5
+                instant_build = yes
+            }
+            add_building_construction = {
+                type = bunker
+                province = 10317
+                level = 5
+                instant_build = yes
+            }
+        }			
+			}
+		}  
+
+#focus for Killing Fields for our Enemies
+	focus = { 
+	id = killingfieldsfortheenemy
+	icon = defence
+	bypass = {} 
+ ai_will_do = { factor = 10} 
+ x =19
+ y =2
+ mutually_exclusive = { } 
+ prerequisite = { focus = finishfortifythemekong }
+ available = {  } 
+ cost = 05 
+  available_if_capitulated = yes  
+ completion_reward = {
+ add_ideas = FRA_land_fort_idea
+ add_stability = 0.05
+			}
+		}
+
+#Focus for Economic Model or destroy the huts
+	focus = { 
+	id = economicmodel
+	icon = infrastructure
+	bypass = {} 
+ ai_will_do = { factor = 10} 
+ x =12
+ y =8
+ mutually_exclusive = {  }
+ prerequisite = { focus = developborder}   
+ available = {  } 
+ cost = 10  
+  available_if_capitulated = yes  
+ completion_reward = {  
+    add_stability = 0.05
+  286 = { 
+        add_building_construction = { 
+ 					type = infrastructure 
+ 					level = 5
+ 					instant_build = yes 
+ 				} 
+			}
+		} 
+	}
+
+#focus for Nationalist Economy
+	focus = { 
+	id = nationalisteconomy
+	icon = demand_territory2
+	bypass = {} 
+ ai_will_do = { factor = 10} 
+ x =10
+ y =8
+ mutually_exclusive = {  }
+ prerequisite = { focus = developborder}   
+ available = {  } 
+ cost = 10  
+  available_if_capitulated = yes  
+ completion_reward = {  
+    add_stability = 0.05
+	286 = { 
+        add_extra_state_shared_building_slots = 1
+        add_building_construction = { 
+ 					type = industrial_complex 
+ 					level = 1
+ 					instant_build = yes 
+ 				}  
+       }
+	286 = { 
+        add_extra_state_shared_building_slots = 1
+        add_building_construction = { 
+ 					type = industrial_complex 
+ 					level = 1
+ 					instant_build = yes 
+ 				}  
+       }
+	286 = { 
+        add_extra_state_shared_building_slots = 1
+        add_building_construction = { 
+ 					type = industrial_complex 
+ 					level = 1
+ 					instant_build = yes 
+ 				}
+       }
+
+		}
+	}
+ }
+
